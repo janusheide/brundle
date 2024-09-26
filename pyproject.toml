@@ -76,6 +76,9 @@ asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "module"
 addopts = "--cov=flies -vv --cov-report term-missing --cov-fail-under=20"
 
+[tool.mypy]
+exclude="build"
+
 [tool.ruff.lint]
 # select = ["ALL"]
 # as of 01/2024 ruff does not support isort configuration, so we disable I001

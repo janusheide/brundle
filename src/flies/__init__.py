@@ -4,7 +4,7 @@
 #
 # Distributed under the "BSD 3-Clause License", see LICENSE.txt.
 
-"""Import uppd functions."""
+"""Import flies functions."""
 
 from importlib.metadata import PackageNotFoundError, version
 
