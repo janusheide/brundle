@@ -3,17 +3,17 @@
 ..
 .. Distributed under the "BSD 3-Clause License", see LICENSE.rst.
 
-Update Python Project Dependencies (UPPD)
-=========================================
+Brundle
+=======
 
-.. image:: https://github.com/janusheide/flies/actions/workflows/unittests.yml/badge.svg
-    :target: https://github.com/janusheide/flies/actions/workflows/unittests.yml
+.. image:: https://github.com/janusheide/brundle/actions/workflows/unittests.yml/badge.svg
+    :target: https://github.com/janusheide/brundle/actions/workflows/unittests.yml
     :alt: Unit tests
 
-.. image:: https://img.shields.io/pypi/pyversions/flies
+.. image:: https://img.shields.io/pypi/pyversions/brundle
    :alt: PyPI - Python Version
 
-.. image:: https://img.shields.io/librariesio/github/janusheide/flies
+.. image:: https://img.shields.io/librariesio/github/janusheide/brundle
    :alt: Libraries.io dependency status for GitHub repo
 
 
@@ -24,14 +24,14 @@ Getting Started
 
 Install and run::
 
-    pip install flies
-    flies --help
+    pip install brundle
+    brundle --help
 
 Usage
 -----
 
 Run::
-    flies
+    brundle
 
 Runs all the following programs in order, and return 1 if any of them gives and error.
     1. licensecheck
@@ -46,6 +46,6 @@ Development
 Setup, run tests and release::
 
     pip install .[dev]
-    flies
+    brundle
     pytest
     python boil.py release
