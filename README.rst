@@ -31,9 +31,11 @@ Usage
 -----
 
 Run::
+
     brundle
 
 Runs all the following programs in order, and return 1 if any of them gives and error.
+
     1. licensecheck
     2. isort
     3. ruff
