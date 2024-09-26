@@ -39,7 +39,7 @@ jobs:
       run: pip install .[dev]
 
     - name: Run linters
-      run: flies
+      run: brundle
 
     # - name: Run build
     #   run: python boil.py build

@@ -1,7 +1,7 @@
-from flies import __version__, run_linters
+from brundle import __version__, run_linters
 
 
-def test_flies():
+def test_brundle():
     run_linters([])
 
 def test_version():
