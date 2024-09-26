@@ -3,6 +3,6 @@ News
 
 Lists of changes between versions.
 
-Latetst
+0.1.0
 -----
 * Initial release
