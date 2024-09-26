@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=74", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+# The version number will be 0.0.0, as of 16/01-24 using setuptools_scm result
+# in all files under git control being included in the wheel (unless excluded
+# in Manifest.in) maybe this will change or one of the other build backends
+# will support dynamic version from git.
+[project]
+name = "flies"
+authors = [
+    {name= 'Janus Heide', email = "janusheide@gmail.com"}
+]
+description = "Run linters in optional dependencies in pyproject.toml files."
+dynamic = ["version"]
+readme = "README.rst"
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development",
+  "License :: OSI Approved :: BSD License",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+
+keywords=["maintenance", "utility"]
+
+dependencies = [
+    "packaging",
+    "tomli<3,>=2; python_version < \"3.11\"",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest==8.3.3",
+    "pytest-aiohttp==1.0.5",
+    "pytest-asyncio==0.24.0",
+    "pytest-cov==5.0.0",
+]
+dev = [
+    "uppd==0.3.0",
+    "bouillon==2.1.0",
+    "build==1.2.2",
+    "isort==5.13.2",
+    "licensecheck==2024.3",
+    "mypy==1.11.2",
+    "ruff==0.6.7",
+    "semver==3.0.2",
+    "twine==5.1.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/janusheide/flies"
+Repository = "https://github.com/janusheide/flies"
+Changelog = "https://github.com/janusheide/flies/blob/main/NEWS.rst"
+
+[project.scripts]
+flies = "flies.flies:main_cli"
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.isort]
+multi_line_output = 5
+include_trailing_comma = "True"
+
+[tool.licensecheck]
+using = "PEP631:test;dev"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "module"
+addopts = "--cov=flies -vv --cov-report term-missing --cov-fail-under=20"
+
+[tool.ruff.lint]
+# select = ["ALL"]
+# as of 01/2024 ruff does not support isort configuration, so we disable I001
+# ignore = ["ANN003", "ANN101", "ASYNC230", "I001", "D107", "D203", "D213", "D401", "FIX", "INP", "G004", "PLR", "SIM105", "TD002", "TD003", "TCH001", "TCH002"]
+# exclude = ["boil.py",]
+
+[tool.ruff.lint.per-file-ignores]
+"test/**/*.py" = ["ANN", "ARG", "ASYNC", "D", "ERA", "S101", "S105", "S106"]
+
+[tool.setuptools_scm]
