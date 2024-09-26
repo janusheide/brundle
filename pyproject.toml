@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 # in Manifest.in) maybe this will change or one of the other build backends
 # will support dynamic version from git.
 [project]
-name = "flies"
+name = "brundle"
 authors = [
     {name= 'Janus Heide', email = "janusheide@gmail.com"}
 ]
@@ -42,7 +42,7 @@ test = [
     "pytest-cov==5.0.0",
 ]
 dev = [
-    "flies[test]",
+    "brundle[test]",
     "uppd==0.3.0",
     "bouillon==2.1.0",
     "build==1.2.2",
@@ -55,12 +55,12 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/janusheide/flies"
-Repository = "https://github.com/janusheide/flies"
-Changelog = "https://github.com/janusheide/flies/blob/main/NEWS.rst"
+Homepage = "https://github.com/janusheide/brundle"
+Repository = "https://github.com/janusheide/brundle"
+Changelog = "https://github.com/janusheide/brundle/blob/main/NEWS.rst"
 
 [project.scripts]
-flies = "flies.flies:main_cli"
+brundle = "brundle.brundle:main_cli"
 
 [tool.coverage.report]
 show_missing = true
@@ -75,7 +75,7 @@ using = "PEP631:test;dev"
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "module"
-addopts = "--cov=flies -vv --cov-report term-missing --cov-fail-under=20"
+addopts = "--cov=brundle -vv --cov-report term-missing --cov-fail-under=20"
 
 [tool.mypy]
 exclude="build"

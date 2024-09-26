@@ -89,7 +89,7 @@ def parse_arguments() -> Namespace:
         "--log-file", type=Path, help="Pipe loggining to file instead of stdout."
     )
 
-    parser.add_argument("-v", "--version", action="version", version=version("flies"))
+    parser.add_argument("-v", "--version", action="version", version=version("brundle"))
 
     return parser.parse_args()
 

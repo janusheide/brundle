@@ -4,14 +4,14 @@
 #
 # Distributed under the "BSD 3-Clause License", see LICENSE.txt.
 
-"""Import flies functions."""
+"""Import brundle functions."""
 
 from importlib.metadata import PackageNotFoundError, version
 
-from flies.flies import run_linters
+from brundle.brundle import run_linters
 
 try:
-    __version__ = version("flies")
+    __version__ = version("brundle")
 except PackageNotFoundError:
     pass
 

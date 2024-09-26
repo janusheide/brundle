@@ -60,7 +60,7 @@ def release(*, version: str, **kwargs) -> None:
 
     clean(**kwargs)
 
-    bouillon.run(["flies"], **kwargs)
+    bouillon.run(["brundle"], **kwargs)
     bouillon.run(["pytest"], **kwargs)
 
     logger.debug("Edit the news file using default editor or nano.")
