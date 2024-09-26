@@ -17,7 +17,7 @@ from subprocess import CalledProcessError, run
 from packaging.requirements import Requirement
 
 try:
-    from tomllib import load
+    from tomllib import load  # type: ignore
 except ModuleNotFoundError:
     from tomli import load  # type: ignore
 
