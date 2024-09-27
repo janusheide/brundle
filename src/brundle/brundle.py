@@ -25,8 +25,19 @@ except ModuleNotFoundError:
 logger = getLogger(__name__)
 
 
-def run_linters(dependencies: list[str]) -> None:
+def optional_dependencies(optional_dep: dict) -> list[str]:
+    """Find all package names in project optional dependencies."""
+    return [Requirement(d).name for deps in optional_dep.values() for d in deps]
 
+
+def run_linters(dependencies: list[str]) -> None:
+    """Run any of the following linters found in the dependencies list,
+    and exit with and error if any of them fails.
+        1. licensecheck
+        2. isort
+        3. ruff
+        4. mypy
+    """
     run_failed = False
 
     if "licensecheck" in dependencies:
@@ -102,19 +113,17 @@ async def main(*, infile: FileType, log_file: Path, log_level: str) -> None:
     )
 
     data = load(infile) #type: ignore
-    project = data.get("project")
-    if project is None:
+    try:
+        project = data["project"]
+        try:
+            run_linters(optional_dependencies(project["optional-dependencies"]))
+        except KeyError:
+            logger.exception(f"Could not find 'optional-dependencies' in: {infile}")
+            exit(1)
+
+    except KeyError:
         logger.critical(f"No project section in input file: {infile}")
         exit(1)
-
-    if optional_dep := project.get("optional-dependencies"):
-        run_linters(
-            [Requirement(d).name for deps in optional_dep.values() for d in deps])
-
-    else:
-        logger.exception(f"Could not find 'optional-dependencies' in: {infile}")
-        exit(1)
-
 
 def main_cli() -> None:
     """Main."""
