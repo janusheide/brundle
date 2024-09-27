@@ -26,11 +26,18 @@ logger = getLogger(__name__)
 
 
 def optional_dependencies(optional_dep: dict) -> list[str]:
+    """Find all package names in project optional dependencies."""
     return [Requirement(d).name for deps in optional_dep.values() for d in deps]
 
 
 def run_linters(dependencies: list[str]) -> None:
-
+    """Run any of the following linters found in the dependencies list,
+    and exit with and error if any of them fails.
+        1. licensecheck
+        2. isort
+        3. ruff
+        4. mypy
+    """
     run_failed = False
 
     if "licensecheck" in dependencies:
