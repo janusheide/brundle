@@ -57,7 +57,6 @@ def run_linters(dependencies: list[str]) -> None:
         except CalledProcessError:
             run_failed = True
 
-
     if run_failed:
         exit(1)
 

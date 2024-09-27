@@ -49,7 +49,7 @@ dev = [
     "isort==5.13.2",
     "licensecheck==2024.3",
     "mypy==1.11.2",
-    "ruff==0.6.7",
+    "ruff==0.6.8",
     "semver==3.0.2",
     "twine==5.1.1",
 ]
