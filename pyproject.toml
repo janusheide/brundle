@@ -75,18 +75,9 @@ using = "PEP631:test;dev"
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "module"
-addopts = "--cov=brundle -vv --cov-report term-missing --cov-fail-under=20"
+addopts = "--cov=brundle -vv --cov-report term-missing --cov-fail-under=70"
 
 [tool.mypy]
 exclude="build"
-
-[tool.ruff.lint]
-# select = ["ALL"]
-# as of 01/2024 ruff does not support isort configuration, so we disable I001
-# ignore = ["ANN003", "ANN101", "ASYNC230", "I001", "D107", "D203", "D213", "D401", "FIX", "INP", "G004", "PLR", "SIM105", "TD002", "TD003", "TCH001", "TCH002"]
-# exclude = ["boil.py",]
-
-[tool.ruff.lint.per-file-ignores]
-"test/**/*.py" = ["ANN", "ARG", "ASYNC", "D", "ERA", "S101", "S105", "S106"]
 
 [tool.setuptools_scm]

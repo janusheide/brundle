@@ -25,6 +25,10 @@ except ModuleNotFoundError:
 logger = getLogger(__name__)
 
 
+def optional_dependencies(optional_dep: dict) -> list[str]:
+    return [Requirement(d).name for deps in optional_dep.values() for d in deps]
+
+
 def run_linters(dependencies: list[str]) -> None:
 
     run_failed = False
@@ -102,19 +106,17 @@ async def main(*, infile: FileType, log_file: Path, log_level: str) -> None:
     )
 
     data = load(infile) #type: ignore
-    project = data.get("project")
-    if project is None:
+    try:
+        project = data["project"]
+        try:
+            run_linters(optional_dependencies(project["optional-dependencies"]))
+        except KeyError:
+            logger.exception(f"Could not find 'optional-dependencies' in: {infile}")
+            exit(1)
+
+    except KeyError:
         logger.critical(f"No project section in input file: {infile}")
         exit(1)
-
-    if optional_dep := project.get("optional-dependencies"):
-        run_linters(
-            [Requirement(d).name for deps in optional_dep.values() for d in deps])
-
-    else:
-        logger.exception(f"Could not find 'optional-dependencies' in: {infile}")
-        exit(1)
-
 
 def main_cli() -> None:
     """Main."""
