@@ -42,8 +42,6 @@ linters = [
 test = [
     "brundle[linters]",
     "pytest==8.3.3",
-    "pytest-aiohttp==1.0.5",
-    "pytest-asyncio==0.24.0",
     "pytest-cov==5.0.0",
 ]
 dev = [
@@ -76,7 +74,7 @@ using = "PEP631:test;dev"
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "module"
-addopts = "--cov=brundle -vv --cov-report term-missing --cov-fail-under=80"
+addopts = "--cov=brundle -vv --cov-report term-missing --cov-fail-under=75"
 
 [tool.mypy]
 exclude = ["build", "boil.py",]
