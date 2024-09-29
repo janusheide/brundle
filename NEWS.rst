@@ -3,7 +3,7 @@ News
 
 Lists of changes between versions.
 
-Latest
+0.3.0
 ------
 * Major: Check if linters are installed instead of looking in pyproject.toml.
 
