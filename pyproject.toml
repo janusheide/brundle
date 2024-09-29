@@ -76,9 +76,9 @@ using = "PEP631:test;dev"
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "module"
-addopts = "--cov=brundle -vv --cov-report term-missing --cov-fail-under=75"
+addopts = "--cov=brundle -vv --cov-report term-missing --cov-fail-under=80"
 
 [tool.mypy]
-exclude="build"
+exclude = ["boil.py",]
 
 [tool.setuptools_scm]
