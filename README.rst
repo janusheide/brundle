@@ -25,8 +25,11 @@ Getting Started
 Install and run::
 
     pip install brundle
-    or
-    pip install brundle[linters] (to install all linters brundle will run.)
+    brundle --help
+
+Or if you want to install all linters that brundle will run::
+
+    pip install brundle[linters]
     brundle --help
 
 Usage
