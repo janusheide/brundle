@@ -8,7 +8,7 @@
 
 from importlib.metadata import PackageNotFoundError, version
 
-from brundle.brundle import optional_dependencies, run_linters
+from brundle.brundle import run_linters
 
 try:
     __version__ = version("brundle")
@@ -16,6 +16,5 @@ except PackageNotFoundError:
     pass
 
 __all__ = (
-    "optional_dependencies",
     "run_linters",
 )

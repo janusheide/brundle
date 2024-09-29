@@ -32,14 +32,11 @@ jobs:
     - name: Setup test environment
       run: pip install .[test]
 
-    - name: Run unit tests
-      run: pytest
-
-    - name: Setup dev environment
-      run: pip install .[dev]
-
     - name: Run linters
       run: brundle
+
+    - name: Run unit tests
+      run: pytest
 
     # - name: Run build
     #   run: python boil.py build
