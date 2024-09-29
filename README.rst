@@ -17,7 +17,7 @@ Brundle
    :alt: Libraries.io dependency status for GitHub repo
 
 
-Runs various linters if they are present in the optional dependencies in pyproject.toml file.
+Runs various linters if they are installed.
 
 Getting Started
 ---------------
@@ -25,6 +25,8 @@ Getting Started
 Install and run::
 
     pip install brundle
+    or
+    pip install brundle[linters] (to install all linters brundle will run.)
     brundle --help
 
 Usage
@@ -34,7 +36,7 @@ Run::
 
     brundle
 
-Runs all the following programs in order, and return 1 if any of them gives and error.
+Runs all the following programs in order, and return 1 if any of them result in an error.
 
     1. licensecheck
     2. isort

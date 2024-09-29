@@ -6,31 +6,17 @@
 from __future__ import annotations
 
 import asyncio
-from argparse import (
-    ArgumentDefaultsHelpFormatter, ArgumentParser, FileType, Namespace,
-)
+from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser, Namespace
 from importlib.metadata import version
+from importlib.util import find_spec
 from logging import basicConfig, getLevelName, getLogger
 from pathlib import Path
 from subprocess import CalledProcessError, run
 
-from packaging.requirements import Requirement
-
-try:
-    from tomllib import load  # type: ignore
-except ModuleNotFoundError:
-    from tomli import load  # type: ignore
-
-
 logger = getLogger(__name__)
 
 
-def optional_dependencies(optional_dep: dict) -> list[str]:
-    """Find all package names in project optional dependencies."""
-    return [Requirement(d).name for deps in optional_dep.values() for d in deps]
-
-
-def run_linters(dependencies: list[str]) -> None:
+def run_linters() -> None:
     """Run any of the following linters found in the dependencies list,
     and exit with and error if any of them fails.
         1. licensecheck
@@ -40,28 +26,28 @@ def run_linters(dependencies: list[str]) -> None:
     """
     run_failed = False
 
-    if "licensecheck" in dependencies:
+    if find_spec("licensecheck"):
         logger.info("Running licensecheck")
         try:
             run(["licensecheck", "--zero"], shell=False, check=True)
         except CalledProcessError:
             run_failed = True
 
-    if "isort" in dependencies:
+    if find_spec("isort"):
         logger.info("Running isort")
         try:
             run(["isort", "."], shell=False, check=True)
         except CalledProcessError:
             run_failed = True
 
-    if "ruff" in dependencies:
+    if find_spec("ruff"):
         logger.info("Running ruff check")
         try:
             run(["ruff", "check"], shell=False, check=True)
         except CalledProcessError:
             run_failed = True
 
-    if "mypy" in dependencies:
+    if find_spec("mypy"):
         logger.info("Running mypy")
         try:
             run(["mypy", "."], shell=False, check=True)
@@ -75,17 +61,8 @@ def run_linters(dependencies: list[str]) -> None:
 def parse_arguments() -> Namespace:
     """Parse arguments."""
     parser = ArgumentParser(
-        description="Update Python Project Dependencies.",
+        description="Run available linters.",
         formatter_class=ArgumentDefaultsHelpFormatter,
-    )
-
-    parser.add_argument(
-        "-i",
-        "--infile",
-        nargs="*",
-        default="pyproject.toml",
-        type=FileType("rb"),
-        help="Path to input file",
     )
 
     parser.add_argument(
@@ -104,26 +81,15 @@ def parse_arguments() -> Namespace:
     return parser.parse_args()
 
 
-async def main(*, infile: FileType, log_file: Path, log_level: str) -> None:
+async def main(*, log_file: Path, log_level: str) -> None:
     """Main."""
     basicConfig(
         filename=log_file,
         level=getLevelName(log_level),
         format="%(levelname)s: %(message)s",
     )
+    run_linters()
 
-    data = load(infile) #type: ignore
-    try:
-        project = data["project"]
-        try:
-            run_linters(optional_dependencies(project["optional-dependencies"]))
-        except KeyError:
-            logger.exception(f"Could not find 'optional-dependencies' in: {infile}")
-            exit(1)
-
-    except KeyError:
-        logger.critical(f"No project section in input file: {infile}")
-        exit(1)
 
 def main_cli() -> None:
     """Main."""
