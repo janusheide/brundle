@@ -4,8 +4,8 @@ News
 Lists of changes between versions.
 
 
-Latest
-------
+1.0.0
+-----
 * Minor: Use cli from bouillon instead of boil.py.
 * Minor: Support Python 3.13.
 
