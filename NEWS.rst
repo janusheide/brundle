@@ -3,6 +3,11 @@ News
 
 Lists of changes between versions.
 
+
+Latest
+------
+* Minor: Use cli from bouillon instead of boil.py.
+
 0.3.0
 ------
 * Major: Check if linters are installed instead of looking in pyproject.toml.
