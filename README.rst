@@ -55,4 +55,4 @@ Setup, run tests and release::
     pip install .[dev]
     brundle
     pytest
-    python boil.py release
+    bouillon release 1.2.3

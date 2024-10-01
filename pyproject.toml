@@ -46,10 +46,9 @@ test = [
 ]
 dev = [
     "brundle[test]",
-    "uppd==0.3.0",
-    "bouillon==2.1.0",
+    "bouillon==2.2.0",
     "build==1.2.2",
-    "semver==3.0.2",
+    "uppd==0.3.0",
     "twine==5.1.1",
 ]
 
@@ -75,6 +74,6 @@ using = "PEP631:test;dev"
 addopts = "--cov=brundle -vv --cov-report term-missing --cov-fail-under=75"
 
 [tool.mypy]
-exclude = ["build", "boil.py",]
+exclude = ["build"]
 
 [tool.setuptools_scm]
