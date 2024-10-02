@@ -3,6 +3,9 @@ News
 
 Lists of changes between versions.
 
+Latest
+------
+* Minor: Pypy support.
 
 1.0.0
 -----
