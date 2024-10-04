@@ -16,7 +16,7 @@ from subprocess import CalledProcessError, run
 logger = getLogger(__name__)
 
 
-def run_linters() -> None:
+def run_linters(licensecheck: bool, isort: bool, ruff: bool, mypy: bool, **kwargs) -> None:
     """Run any of the following linters found in the dependencies list,
     and exit with and error if any of them fails.
         1. licensecheck
@@ -26,28 +26,28 @@ def run_linters() -> None:
     """
     run_failed = False
 
-    if find_spec("licensecheck"):
+    if licensecheck:
         logger.info("Running licensecheck")
         try:
             run(["licensecheck", "--zero"], shell=False, check=True)
         except CalledProcessError:
             run_failed = True
 
-    if find_spec("isort"):
+    if isort:
         logger.info("Running isort")
         try:
             run(["isort", "."], shell=False, check=True)
         except CalledProcessError:
             run_failed = True
 
-    if find_spec("ruff"):
+    if ruff:
         logger.info("Running ruff check")
         try:
             run(["ruff", "check"], shell=False, check=True)
         except CalledProcessError:
             run_failed = True
 
-    if find_spec("mypy"):
+    if mypy:
         logger.info("Running mypy")
         try:
             run(["mypy", "."], shell=False, check=True)
@@ -67,28 +67,44 @@ def cli(args) -> Namespace:
 
     parser.add_argument(
         "--log-level",
-        default="WARNING",
         choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
-        help="Logging level.",
+        default="WARNING",
+        help="logging level",
+    )
+    parser.add_argument(
+        "--log-file", type=Path, help="pipe loggining to file instead of stdout"
     )
 
     parser.add_argument(
-        "--log-file", type=Path, help="Pipe loggining to file instead of stdout."
-    )
+        "--licensecheck", type=bool, help="runs licensecheck",
+        default=find_spec("licensecheck") is not None
+        )
+    parser.add_argument(
+        "--isort", type=bool, help="runs isort",
+        default=find_spec("isort") is not None
+        )
+    parser.add_argument(
+        "--ruff", type=bool, help="runs ruff",
+        default=find_spec("ruff") is not None
+        )
+    parser.add_argument(
+        "--mypy", type=bool, help="runs mypy",
+        default=find_spec("mypy") is not None
+        )
 
     parser.add_argument("-v", "--version", action="version", version=version("brundle"))
 
     return parser.parse_args()
 
 
-def main(*, log_file: Path, log_level: str) -> None:
+def main(*, log_file: Path, log_level: str, **kwargs) -> None:
     """Main."""
     basicConfig(
         filename=log_file,
         level=getLevelName(log_level),
         format="%(levelname)s: %(message)s",
     )
-    run_linters()
+    run_linters(**kwargs)
 
 
 def main_cli() -> None:
