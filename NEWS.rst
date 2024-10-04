@@ -5,6 +5,7 @@ Lists of changes between versions.
 
 Latest
 ------
+* Minor: Show what linters will run in the cli help screen.
 * Minor: Pypy support.
 
 1.0.0
