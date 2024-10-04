@@ -27,10 +27,22 @@ Install and run::
     pip install brundle
     brundle --help
 
-Or if you want to install all linters that brundle will run::
+    usage: brundle [-h] [--log-level {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [--log-file LOG_FILE] [-v]
+
+    Run available linters.
+
+    options:
+    -h, --help            show this help message and exit
+    --log-level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
+                            Logging level. (default: WARNING)
+    --log-file LOG_FILE   Pipe loggining to file instead of stdout. (default: None)
+    -v, --version         show program's version number and exit
+
+
+Or if you want to install all linters that brundle bundles::
 
     pip install brundle[linters]
-    brundle --help
+
 
 Usage
 -----
