@@ -42,7 +42,7 @@ linters = [
     "isort==5.13.2",
     "licensecheck==2024.3",
     "mypy==1.11.2",
-    "ruff==0.6.8",
+    "ruff==0.6.9",
 ]
 test = [
     "brundle[linters]",
@@ -51,10 +51,8 @@ test = [
 ]
 dev = [
     "brundle[test]",
-    "bouillon==2.2.0",
-    "build==1.2.2",
-    "uppd==0.3.0",
-    "twine==5.1.1",
+    "bouillon[release]==2.4.0",
+    "uppd==1.0.0",
 ]
 
 [project.urls]
