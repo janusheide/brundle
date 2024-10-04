@@ -5,7 +5,7 @@
 
 from __future__ import annotations
 
-import asyncio
+import sys
 from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser, Namespace
 from importlib.metadata import version
 from importlib.util import find_spec
@@ -58,7 +58,7 @@ def run_linters() -> None:
         exit(1)
 
 
-def parse_arguments() -> Namespace:
+def cli(args) -> Namespace:
     """Parse arguments."""
     parser = ArgumentParser(
         description="Run available linters.",
@@ -81,7 +81,7 @@ def parse_arguments() -> Namespace:
     return parser.parse_args()
 
 
-async def main(*, log_file: Path, log_level: str) -> None:
+def main(*, log_file: Path, log_level: str) -> None:
     """Main."""
     basicConfig(
         filename=log_file,
@@ -93,8 +93,7 @@ async def main(*, log_file: Path, log_level: str) -> None:
 
 def main_cli() -> None:
     """Main."""
-    args = parse_arguments()
-    asyncio.run(main(**vars(args)))
+    main(**vars(cli(sys.argv[1:])))
 
 
 if __name__ == "__main__":
