@@ -1,4 +1,3 @@
-
 # Copyright (c) 2024, Janus Heide.
 # All rights reserved.
 #
@@ -8,13 +7,7 @@
 
 from importlib.metadata import PackageNotFoundError, version
 
-from brundle.brundle import run_linters
-
 try:
     __version__ = version("brundle")
 except PackageNotFoundError:
     pass
-
-__all__ = (
-    "run_linters",
-)
