@@ -15,7 +15,7 @@ def test_cli():
     assert cli(["--help"])
     assert cli(["--version"])
 
-    a = vars(cli(["--log_file", "log.temp", "log_level", "INFO"]))
+    a = vars(cli(["--log_file", "log.temp", "--log_level", "INFO"]))
     a["log_file"] == "log.temp"
     a["log_level"] == "INFO"
 
