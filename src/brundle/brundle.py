@@ -68,7 +68,7 @@ def cli(args) -> Namespace:
     parser.add_argument(
         "--log-level",
         choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
-        default="WARNING",
+        default="INFO",
         help="logging level",
     )
     parser.add_argument(
