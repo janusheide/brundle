@@ -40,9 +40,8 @@ dependencies = [
 [project.optional-dependencies]
 linters = [
     "isort==5.13.2",
-    "licensecheck==2024.3",
-    "mypy==1.11.2",
-    "ruff==0.6.9",
+    "mypy==1.13.0",
+    "ruff==0.7.1",
 ]
 test = [
     "brundle[linters]",
@@ -51,10 +50,11 @@ test = [
 ]
 dev = [
     "brundle[test]",
-    "bouillon==2.4.0",
-    "build==1.2.2",
+    "bouillon==2.6.0",
+    "build==1.2.2.post1",
+    "licensecheck==2024.3",
     "twine==5.1.1",
-    "uppd==1.0.0",
+    "uppd==1.3.0",
 ]
 
 [project.urls]

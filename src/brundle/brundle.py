@@ -16,22 +16,14 @@ from subprocess import CalledProcessError, run
 logger = getLogger(__name__)
 
 
-def run_linters(licensecheck: bool, isort: bool, ruff: bool, mypy: bool, **kwargs) -> None:
+def run_linters(isort: bool, ruff: bool, mypy: bool, **kwargs) -> None:
     """Run any of the following linters found in the dependencies list,
     and exit with and error if any of them fails.
-        1. licensecheck
-        2. isort
-        3. ruff
-        4. mypy
+        1. isort
+        2. ruff
+        3. mypy
     """
     run_failed = False
-
-    if licensecheck:
-        logger.info("Running licensecheck")
-        try:
-            run(["licensecheck", "--zero"], shell=False, check=True)
-        except CalledProcessError:
-            run_failed = True
 
     if isort:
         logger.info("Running isort")
@@ -75,10 +67,6 @@ def cli(args) -> Namespace:
         "--log-file", type=Path, help="pipe loggining to file instead of stdout"
     )
 
-    parser.add_argument(
-        "--licensecheck", type=bool, help="runs licensecheck",
-        default=find_spec("licensecheck") is not None
-        )
     parser.add_argument(
         "--isort", type=bool, help="runs isort",
         default=find_spec("isort") is not None
