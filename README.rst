@@ -19,10 +19,9 @@ Brundle
 
 Runs all the following programs in order, and return 1 if any of them result in an error.
 
-    1. licensecheck
-    2. isort
-    3. ruff
-    4. mypy
+    1. isort
+    2. ruff
+    3. mypy
 
 
 Getting Started
@@ -36,7 +35,6 @@ Install and run::
     usage: brundle [-h]
                    [--log-level {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    [--log-file LOG_FILE]
-                   [--licensecheck LICENSECHECK]
                    [--isort ISORT]
                    [--ruff RUFF]
                    [--mypy MYPY]
@@ -49,8 +47,6 @@ Install and run::
     --log-level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                           logging level (default: INFO)
     --log-file LOG_FILE   pipe loggining to file instead of stdout (default: None)
-    --licensecheck LICENSECHECK
-                          runs licensecheck (default: False)
     --isort ISORT         runs isort (default: False)
     --ruff RUFF           runs ruff (default: False)
     --mypy MYPY           runs mypy (default: False)
@@ -65,7 +61,6 @@ Or if you want to install all linters that brundle bundles::
     usage: brundle [-h]
                    [--log-level {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    [--log-file LOG_FILE]
-                   [--licensecheck LICENSECHECK]
                    [--isort ISORT]
                    [--ruff RUFF]
                    [--mypy MYPY]
@@ -78,8 +73,6 @@ Or if you want to install all linters that brundle bundles::
     --log-level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                           logging level (default: INFO)
     --log-file LOG_FILE   pipe loggining to file instead of stdout (default: None)
-    --licensecheck LICENSECHECK
-                          runs licensecheck (default: True)
     --isort ISORT         runs isort (default: True)
     --ruff RUFF           runs ruff (default: True)
     --mypy MYPY           runs mypy (default: True)

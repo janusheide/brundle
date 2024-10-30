@@ -3,6 +3,10 @@ News
 
 Lists of changes between versions.
 
+Latest
+------
+* Minor: Dropped licensecheck from tests.
+
 1.1.0
 -----
 * Minor: Show what linters will run in the cli help screen.
