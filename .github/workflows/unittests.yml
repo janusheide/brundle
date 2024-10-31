@@ -37,3 +37,12 @@ jobs:
 
     - name: Run unit tests
       run: pytest
+
+    - name: Find old dependencies
+      run: dlister test -o requirements.old
+
+    - name: Install old dependencies
+      run: pip install -r requirements.old
+
+    - name: Run unit tests with old dependencies
+      run: pytest
