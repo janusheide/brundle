@@ -3,8 +3,8 @@ News
 
 Lists of changes between versions.
 
-Latest
-------
+1.2.0
+-----
 * Minor: Dropped licensecheck from tests.
 
 1.1.0
