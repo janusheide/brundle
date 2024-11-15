@@ -14,6 +14,7 @@ authors = [
 description = "Run various linters if they are installed."
 dynamic = ["version"]
 readme = "README.rst"
+keywords=["maintenance", "utility"]
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -36,7 +37,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 
-keywords=["maintenance", "utility"]
+requires-python = ">=3.8"
 
 dependencies = [
 ]
