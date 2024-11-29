@@ -3,6 +3,8 @@
 #
 # Distributed under the "BSD 3-Clause License", see LICENSE.txt.
 
+"""Runs various linters and similar."""
+
 from __future__ import annotations
 
 import sys
@@ -16,8 +18,9 @@ from subprocess import CalledProcessError, run
 logger = getLogger(__name__)
 
 
-def run_linters(isort: bool, ruff: bool, mypy: bool, **kwargs) -> None:
-    """Run any of the following linters found in the dependencies list,
+def run_linters(*, isort: bool, ruff: bool, mypy: bool) -> None:
+    """Run any of the following linters found in the dependencies list.
+
     and exit with and error if any of them fails.
         1. isort
         2. ruff
@@ -47,7 +50,7 @@ def run_linters(isort: bool, ruff: bool, mypy: bool, **kwargs) -> None:
             run_failed = True
 
     if run_failed:
-        exit(1)
+        sys.exit(1)
 
 
 def cli(args) -> Namespace:
@@ -64,25 +67,25 @@ def cli(args) -> Namespace:
         help="logging level",
     )
     parser.add_argument(
-        "--log-file", type=Path, help="pipe loggining to file instead of stdout"
+        "--log-file", type=Path, help="pipe loggining to file instead of stdout",
     )
 
     parser.add_argument(
         "--isort", type=bool, help="runs isort",
-        default=find_spec("isort") is not None
+        default=find_spec("isort") is not None,
         )
     parser.add_argument(
         "--ruff", type=bool, help="runs ruff",
-        default=find_spec("ruff") is not None
+        default=find_spec("ruff") is not None,
         )
     parser.add_argument(
         "--mypy", type=bool, help="runs mypy",
-        default=find_spec("mypy") is not None
+        default=find_spec("mypy") is not None,
         )
 
     parser.add_argument("-v", "--version", action="version", version=version("brundle"))
 
-    return parser.parse_args()
+    return parser.parse_args(args)
 
 
 def main(*, log_file: Path, log_level: str, **kwargs) -> None:
