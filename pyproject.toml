@@ -46,7 +46,7 @@ dependencies = [
 linters = [
     "isort==5.13.2",
     "mypy==1.13.0",
-    "ruff==0.7.3",
+    "ruff==0.8.1",
 ]
 test = [
     "brundle[linters]",
@@ -56,11 +56,11 @@ test = [
 ]
 dev = [
     "brundle[test]",
-    "bouillon==2.7.0",
+    "bouillon==2.8.0",
     "build==1.2.2.post1",
     "licensecheck==2024.3",
     "twine==5.1.1",
-    "uppd==1.4.0",
+    "uppd==1.5.0",
 ]
 
 [project.urls]
@@ -88,5 +88,13 @@ filterwarnings = ["error"]
 
 [tool.mypy]
 exclude = ["build"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+# as of 01/2024 ruff does not support isort configuration, so we disable I001
+ignore = ["ANN001", "ANN003", "D203", "D213", "D401", "INP001", "S603", "S607", "SIM105"]
+
+[tool.ruff.lint.per-file-ignores]
+"test/**/*.py" = ["ANN", "ARG", "ASYNC", "D", "ERA", "S101", "S105", "S106"]
 
 [tool.setuptools_scm]

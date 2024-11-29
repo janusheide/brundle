@@ -3,6 +3,10 @@
 #
 # Distributed under the "BSD 3-Clause License", see LICENSE.txt.
 
+from pathlib import Path
+
+import pytest
+
 from brundle import __version__
 from brundle.brundle import cli, main_cli
 
@@ -12,12 +16,15 @@ def test_main_cli():
 
 
 def test_cli():
-    assert cli(["--help"])
-    assert cli(["--version"])
+    with pytest.raises(SystemExit):
+        assert cli(["--version"])
 
-    a = vars(cli(["--log_file", "log.temp", "--log_level", "INFO"]))
-    a["log_file"] == "log.temp"
-    a["log_level"] == "INFO"
+    with pytest.raises(SystemExit):
+        assert cli(["--help"])
+
+    a = vars(cli(["--log-file", "log.temp", "--log-level", "INFO"]))
+    assert a["log_file"] == Path("log.temp")
+    assert a["log_level"] == "INFO"
 
 
 def test_version():
