@@ -46,12 +46,12 @@ dependencies = [
 linters = [
     "isort==5.13.2",
     "mypy==1.13.0",
-    "ruff==0.8.1",
+    "ruff==0.8.2",
 ]
 test = [
     "brundle[linters]",
     "dlister==1.3.0",
-    "pytest==8.3.3",
+    "pytest==8.3.4",
     "pytest-cov<=6.0.0,>=5.0.0",
 ]
 dev = [
@@ -59,8 +59,8 @@ dev = [
     "bouillon==2.9.0",
     "build==1.2.2.post1",
     "licensecheck==2024.3",
-    "twine==5.1.1",
-    "uppd==1.5.0",
+    "twine==6.0.1",
+    "uppd==1.6.0",
 ]
 
 [project.urls]
