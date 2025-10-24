@@ -6,6 +6,7 @@ Lists of changes between versions.
 Latest
 ------
 * Major: Drop python 3.8 support.
+* Minor: Support Python 3.14.
 
 1.3.0
 -----
